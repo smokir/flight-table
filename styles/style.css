@@ -1,0 +1,195 @@
+body {
+    font-family: 'Exo 2', sans-serif;
+}
+
+.controls {
+    margin: 10px auto;
+    text-align: center;
+}
+
+    .controls__checkbox {
+        display: none;
+    }
+
+    .controls__btn {
+        margin: 0 5px;
+        padding: 3px 7px 3px 8px;
+        color: #789;
+        border: 1px solid #789;
+        border-radius: 5px;
+    }
+
+    .controls__checkbox:checked + .controls__btn {
+        color: #fff;
+        background-color: #789;
+    }
+
+.timetable {
+    font-size: 16px;
+    overflow: hidden;
+    width: 90%;
+    margin: auto;
+    border-collapse: initial;
+    cursor: default;
+    border-radius: 30px 30px 30px 30px / 15px 15px 15px 15px;
+}
+    
+        .timetable__header_fixed {
+            position: fixed;
+            z-index: 30;
+            width: 90%;
+            top: 0;
+            display: none;
+        }
+
+    .timetable__row {
+        position: relative;
+    }
+
+        .timetable__row_body:nth-child(even) {
+            background-color: #4a4a4a;
+        }
+
+        .timetable__row_body:nth-child(odd) {
+            background-color: #303030;
+        }
+
+    .timetable__cell {
+        position: relative;
+        height: 56px;
+        padding: 4px 5px;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid #5f93a0;
+    }
+
+        .timetable__cell_header {
+            z-index: 20;
+            color: #fff;
+            background-color: #2f2f3f;
+        }
+        
+        .timetable__cell_body:hover:after {
+            position: absolute;
+            z-index: 10;
+            top: -5000px;
+            left: 0;
+            width: 100%;
+            height: 10000px;
+            content: "";
+            background-color: rgba(99,175,255,.3);
+        }
+
+        .timetable__row_body:hover .timetable__cell_body {
+            background-color: rgba(99,175,255,.3);
+        }
+        
+        .timetable__cell_h-flight-type {
+            width: 5%;
+            min-width: 46px;
+        }
+        
+        .timetable__cell_h-flight-number {
+            width: 8%;
+            min-width: 72px;
+        }
+        
+        .timetable__cell_h-airline-logo {
+            width: 15%;
+            min-width: 150px;
+        }
+        
+        .timetable__cell_h-airline-title {
+            width: 12%;
+            min-width: 114px;
+        }
+        
+        .timetable__cell_h-aircraft-type {
+            width: 10%;
+            min-width: 46px;
+        }
+        
+        .timetable__cell_h-airport-title {
+            width: 10%;
+            min-width: 74px;
+        }
+        
+        .timetable__cell_h-departure-datetime {
+            width: 8%;
+            min-width: 58px;
+        }
+        
+        .timetable__cell_h-arrival-datetime {
+            width: 8%;
+            min-width: 64px;
+        }
+        
+        .timetable__cell_h-flight-status {
+            width: 12%;
+            min-width: 119px;
+        }
+        
+        .timetable__cell_h-comment {
+            width: 12%;
+            min-width: 96px;
+        }
+    
+    .timetable__content {
+        position: relative;
+        z-index: 20;
+    }
+
+        .timetable__content_text {
+            white-space: nowrap;
+        }
+    
+        .timetable__content_small {
+            font-size: 12px;
+        }
+        
+        .timetable__content_brown {
+            color: #f4a460;
+        }
+
+        .timetable__content_orange {
+            color: #ff8c00;
+        }
+        
+        .timetable__content_purpule {
+            color: #af7fef;
+        }
+        
+        .timetable__content_blue {
+            color: #00bfff;
+        }
+        
+        .timetable__content_grey {
+            color: #d3d3d3;
+        }
+
+        .timetable__content_yellow {
+            color: #ff9;
+        }
+
+        .timetable__content_green {
+            color: #9e0;
+        }
+        
+        .timetable__content_red {
+            color: #ff5f5f;
+        }
+        
+        .timetable__content_white {
+            color: #fff;
+        }
+        
+@media only screen
+    and (max-width: 1140px) {
+        .timetable {
+            width: 100%;
+        }
+        
+        .timetable__header_fixed {
+            width: 100%;
+        }
+}

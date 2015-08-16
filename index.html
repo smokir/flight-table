@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Airport flights table</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Exo+2&subset=latin,cyrillic">
+        <link rel="stylesheet" href="./styles/normalize.css">
+        <link rel="stylesheet" href="./styles/collapsible.css">
+        <link rel="stylesheet" href="./styles/modal.css">
+        <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/custom-icon.css">
+    </head>
+    <body>
+        <div id="flights-timetable-block">
+            <div class="controls">
+                <input id="checkbox-arrive" class="controls__checkbox" type="checkbox" data-bind="checked: isArrival">
+                <label for="checkbox-arrive" class="controls__btn">Вылет</label>
+                <input id="checkbox-departure" class="controls__checkbox" type="checkbox" data-bind="checked: isDeparture">
+                <label for="checkbox-departure" class="controls__btn">Прилет</label>
+            </div>
+            <table class="timetable timetable_fixed">
+                <thead class="timetable__header_fixed">
+                    <tr class="timetable__row timetable__row_header">
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-flight-type">Тип рейса</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-flight-number">Номер рейса</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-airline-logo collapsible__third">Логотип авиакомпании</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-airline-title collapsible__first">Авиакомпания</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-aircraft-type collapsible__second">
+                            <span class="collapsible__text_long">Тип воздушного судна</span>
+                            <span class="collapsible__text_short">Тип судна</span>
+                        </th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-airport-title collapsible__fifth">Аэропорт</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-departure-datetime">Время вылета</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-arrival-datetime">Время прилета</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-flight-status">Статус рейса</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-comment collapsible__fourth">Примечание</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="timetable timetable_original">
+                <thead>
+                    <tr class="timetable__row timetable__row_header">
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-flight-type">Тип рейса</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-flight-number">Номер рейса</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-airline-logo collapsible__third">Логотип авиакомпании</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-airline-title collapsible__first">Авиакомпания</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-aircraft-type collapsible__second">
+                            <span class="collapsible__text_long">Тип воздушного судна</span>
+                            <span class="collapsible__text_short">Тип судна</span>
+                        </th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-airport-title collapsible__fifth">Аэропорт</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-departure-datetime">Время вылета</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-arrival-datetime">Время прилета</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-flight-status">Статус рейса</th>
+                        <th class="timetable__cell timetable__cell_header timetable__cell_h-comment collapsible__fourth">Примечание</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: flights">
+                    <!-- ko if: $root.isArrival() && flightTypeCode === "arrival" || $root.isDeparture() && flightTypeCode === "departure" -->
+                    <tr class="timetable__row timetable__row_body" 
+                        data-bind="click: function() { window.document.location = '#modal_' + flightNumber; }">
+                        <td class="timetable__cell timetable__cell_body">
+                            <div class="timetable__content">
+                                <i data-bind="attr: { class: 'custom-plane-icon_' + flightTypeCode, title: flightTypeTitle}"></i>
+                            </div>
+                        </td>
+                        <td class="timetable__cell timetable__cell_body">
+                            <span class="timetable__content timetable__content_text timetable__content_brown" data-bind="text: flightNumber"></span>
+                        </td>
+                        <td class="timetable__cell timetable__cell_body collapsible__third">
+                            <div class="timetable__content">
+                                <img data-bind="attr: {'src': airlineLogo}" />
+                            </div>
+                        </td>
+                        <td class="timetable__cell timetable__cell_body collapsible__first">
+                            <span class="timetable__content timetable__content_brown" data-bind="text: airlineTitle"></span>
+                        </td>
+                        <td class="timetable__cell timetable__cell_body collapsible__second">
+                            <span class="timetable__content timetable__content_text timetable__content_brown collapsible__text_long" data-bind="text: aircraftType"></span>
+                            <span class="timetable__content timetable__content_text timetable__content_brown collapsible__text_short" data-bind="text: aircraftTypeShort"></span>
+                        </td>
+                        <td class="timetable__cell timetable__cell_body collapsible__fifth">
+                            <div class="timetable__content">
+                                <div class="timetable__content_orange" data-bind="text: airportTitle"></div>
+                                <div class="timetable__content_orange" data-bind="text: airportCode"></div>
+                            </div>
+                        </td>
+                        <td class="timetable__cell timetable__cell_body">
+                            <div class="timetable__content">
+                                <span class="timetable__content_text timetable__content_blue" data-bind="text: departureTime"></span>
+                                <span class="timetable__content_text timetable__content_small timetable__content_blue" data-bind="text: departureDate"></span>
+                            </div>
+                        </td>
+                        <td class="timetable__cell timetable__cell_body">
+                            <div class="timetable__content">
+                                <span class="timetable__content_text timetable__content_purpule" data-bind="text: arrivalTime"></span>
+                                <span class="timetable__content_text timetable__content_small timetable__content_purpule" data-bind="text: arrivalDate"></span>
+                            </div>
+                        </td>
+                        <td class="timetable__cell timetable__cell_body">
+                            <span class="timetable__content" data-bind="text: flightStatus, 
+                                css: { 'timetable__content_yellow': flightStatusCode === 'normal', 
+                                        'timetable__content_green': flightStatusCode === 'good',
+                                          'timetable__content_red': flightStatusCode === 'bad' }"></span>
+                        </td>
+                        <td class="timetable__cell timetable__cell_body collapsible__fourth">
+                            <span class="timetable__content timetable__content_grey" data-bind="text: comment"></span>
+                        </td>
+                    </tr>
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <div class="modals" data-bind="foreach: flights">
+                <div class="modal" tabindex="-1" role="dialog" data-bind="attr: { 'id' : 'modal_' + flightNumber }">
+                   <a class="modal__backdrop" href="#close"></a>
+                    <div class="modal__body">
+                        <div class="modal__header">
+                            Информация о рейсе
+                            <span class="modal__h-text" data-bind="text: flightNumber"></span>
+                            <a href="#close" class="modal__close">×</a>
+                        </div>
+                        <div class="modal__content">
+                            <div class="modal__c-row timetable__content_brown">
+                                <span class="modal__c-text modal__c-text_left">Тип рейса</span>
+                                <span class="modal__c-text modal__c-text_right" data-bind="text: flightTypeTitle"></span>
+                            </div>
+                            <div class="modal__c-row timetable__content_brown">
+                                <span class="modal__c-text modal__c-text_left">Номер рейса</span>
+                                <span class="modal__c-text modal__c-text_right" data-bind="text: flightNumber"></span>
+                            </div>
+                            <div class="modal__c-row timetable__content_brown">
+                                <span class="modal__c-text modal__c-text_left">Авиакомпания</span>
+                                <span class="modal__c-text modal__c-text_right" data-bind="text: airlineTitle"></span>
+                            </div>
+                            <div class="modal__c-row timetable__content_brown">
+                                <span class="modal__c-text modal__c-text_left">Тип судна</span>
+                                <span class="modal__c-text modal__c-text_right" data-bind="text: aircraftType"></span>
+                            </div>
+                            <div class="modal__c-row timetable__content_orange">
+                                <span class="modal__c-text modal__c-text_left">Аэропорт</span>
+                                <span class="modal__c-text modal__c-text_right" data-bind="text: airportTitle"></span>
+                            </div>
+                            <div class="modal__c-row timetable__content_blue">
+                                <span class="modal__c-text modal__c-text_left">Время вылета</span>
+                                <span class="modal__c-text modal__c-text_right" data-bind="text: departureTime"></span>
+                            </div>
+                            <div class="modal__c-row timetable__content_blue">
+                                <span class="modal__c-text modal__c-text_left">Дата вылета</span>
+                                <span class="modal__c-text modal__c-text_right" data-bind="text: departureDate"></span>
+                            </div>
+                            <div class="modal__c-row timetable__content_purpule">
+                                <span class="modal__c-text modal__c-text_left">Время прилета</span>
+                                <span class="modal__c-text modal__c-text_right" data-bind="text: arrivalTime"></span>
+                            </div>
+                            <div class="modal__c-row timetable__content_purpule">
+                                <span class="modal__c-text modal__c-text_left">Дата прилета</span>
+                                <span class="modal__c-text modal__c-text_right" data-bind="text: arrivalDate"></span>
+                            </div>
+                            <div class="modal__c-row" 
+                                data-bind=" css: { 'timetable__content_yellow': flightStatusCode === 'normal', 
+                                                    'timetable__content_green': flightStatusCode === 'good',
+                                                      'timetable__content_red': flightStatusCode === 'bad' }">
+                                <span class="modal__c-text modal__c-text_left">Cтатус</span>
+                                <span class="modal__c-text modal__c-text_right" data-bind="text: flightStatus"></span>
+                            </div>
+                            <div class="modal__c-row timetable__content_grey">
+                                <span class="modal__c-text modal__c-text_left">Примечание</span>
+                                <span class="modal__c-text modal__c-text_right" data-bind="text: comment"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="./scripts/lib/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="./scripts/lib/knockout-3.3.0.js"></script>
+        <script type="text/javascript" src="./scripts/app.js"></script>
+    </body>
+</html>

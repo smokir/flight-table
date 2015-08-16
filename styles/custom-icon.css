@@ -1,0 +1,19 @@
+[class^="custom-"],
+[class*=" custom-"] { 
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-image: url(../images/customIcons.png);
+}
+
+.custom-plane-icon_arrival {
+    background-position: 0 0;
+    width: 32px;
+    height: 32px;
+}
+
+.custom-plane-icon_departure {
+    background-position: -32px 0;
+    width: 32px;
+    height: 32px;
+}

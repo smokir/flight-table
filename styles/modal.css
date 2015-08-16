@@ -1,0 +1,106 @@
+.modal {
+    position: fixed;
+    z-index: 40;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    content: "";
+    cursor: default;
+    background-color: rgba(0,0,0,0.7);
+}
+
+    .modal:target {
+        display: block;
+    }
+    
+    .modal__header {
+        padding: 20px;
+        text-align: center;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #ffffff;
+        background-color: #2f2f3f;
+    }
+    
+        .modal__h-text {
+            font-weight: bolder;
+        }
+
+    .modal__body {
+        position: fixed;
+        z-index: 50;
+        top: 10%;
+        left: 50%;
+        width: 450px;
+        cursor: default;
+        -webkit-transform: translate(-50%, -50%);
+           -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+             -o-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        opacity: 0;
+        background: #b0b0b0;
+    }
+
+        .modal:target .modal__body {
+            top: 50%;
+            transition: opacity 0.3s ease;
+            opacity: 1;
+        }
+
+    .modal__content {
+        padding: 20px;
+    }
+    
+        .modal__c-row {
+            padding: 10px 5px;
+        }
+        
+        .modal__c-row:after {
+            display: block;
+            visibility: hidden;
+            clear: both;
+            height: 0;
+            content: " ";
+        }
+        
+        .modal__c-row:nth-child(even) {
+            background-color: #4a4a4a;
+        }
+
+        .modal__c-row:nth-child(odd) {
+            background-color: #303030;
+        }
+    
+        .modal__c-text {
+            text-transform: uppercase;
+        }
+        
+        .modal__c-text_left {
+            float: left;
+        }
+        
+        .modal__c-text_right {
+            float: right;
+        }
+
+    .modal__close {
+        float: right;
+        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+        font-family: arial;
+        font-size: 30px;
+        line-height: 16px;
+    }
+
+    .modal__backdrop {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        cursor: pointer;
+    }

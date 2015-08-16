@@ -1,0 +1,57 @@
+@media only screen
+    and (min-width: 900px) {
+        .collapsible__text_long {
+            display: block;
+        }
+        
+        .collapsible__text_short {
+            display: none;
+        }
+}
+
+@media only screen
+    and (max-width: 900px) {
+        .collapsible__text_long {
+            display: none;
+        }
+        
+        .collapsible__text_short {
+            display: block;
+        }
+}
+
+
+@media only screen
+    and (max-width: 1030px)  {
+        .collapsible__first {
+            display: none;
+        }
+}
+
+@media only screen
+    and (max-width: 850px)  {
+        .collapsible__second {
+            display: none;
+        }
+}
+
+@media only screen
+    and (max-width: 800px)  {
+        .collapsible__third {
+            display: none;
+        }
+}
+
+@media only screen
+    and (max-width: 640px)  {
+        .collapsible__fourth {
+            display: none;
+        }
+}
+
+@media only screen
+    and (max-width: 525px)  {
+        .collapsible__fifth {
+            display: none;
+        }
+}
